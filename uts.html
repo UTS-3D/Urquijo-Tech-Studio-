@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urquijo Tech Studio | UTS - Ingeniería, Simulación y Prototipado</title>
+  
+  <!-- Tipografías elegantes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              u: '#1A367C',       // Azul marino de la 'U'
+              ts: '#212124',      // Grafito oscuro de la 'TS'
+              accent: '#2A52BE',
+              surface: '#F4F5F7',
+              border: '#E2E5EB'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F8F9FA;
+      color: #212124;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .technical-grid {
+      background-size: 32px 32px;
+      background-image: 
+        radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="technical-grid antialiased selection:bg-brand-u selection:text-white">
+
+  <!-- NAVEGACIÓN -->
+  <header class="sticky top-0 z-40 bg-[#F8F9FA]/90 backdrop-blur-md border-b border-brand-border">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- LOGO UTS -->
+      <a href="#" class="flex items-center gap-3">
+        <span class="text-3xl font-black tracking-tighter inline-block">
+          <span class="text-brand-u">U</span><span class="text-brand-ts">TS</span>
+        </span>
+        <div class="hidden sm:block border-l border-brand-border pl-3">
+          <span class="block text-xs font-bold tracking-widest uppercase text-brand-ts">Urquijo Tech Studio</span>
+          <span class="block text-[10px] tracking-wider text-gray-500 uppercase">Ingeniería & Prototipado</span>
+        </div>
+      </a>
+
+      <!-- ENLACES -->
+      <nav class="flex items-center gap-6 md:gap-8">
+        <a href="#servicios" class="text-xs font-mono uppercase tracking-widest text-gray-700 hover:text-brand-u transition-colors">Servicios</a>
+        <a href="#contacto" class="text-xs font-mono uppercase tracking-widest text-gray-700 hover:text-brand-u transition-colors">Contacto</a>
+        
+        <!-- Enlace a Instagram -->
+        <a href="https://www.instagram.com/uts.ingenieria/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-xs font-mono uppercase tracking-widest text-gray-700 hover:text-pink-600 transition-colors" title="Instagram de UTS">
+          <i data-lucide="instagram" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Instagram</span>
+        </a>
+
+        <a href="#contacto" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 bg-brand-ts text-white text-xs font-semibold tracking-wider uppercase rounded-full hover:bg-brand-u transition-all">
+          <span>Tengo una idea</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION CON F5m.jpg -->
+  <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden border-b border-brand-border">
+    
+    <!-- Imagen de Fondo (auto fórmula rojo con buena visibilidad) -->
+    <div class="absolute inset-0 z-0">
+      <img src="F5m.jpg" alt="Fórmula 5M CAD Render" class="w-full h-full object-cover object-center">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#F8F9FA]/80 via-[#F8F9FA]/55 to-[#F8F9FA]/80"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#F8F9FA] via-transparent to-transparent"></div>
+    </div>
+
+    <!-- Contenido Hero -->
+    <div class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-brand-border text-xs font-mono uppercase tracking-widest text-brand-u mb-6 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-brand-u animate-pulse"></span>
+        Ingeniería Aplicada & Manufactura Industrial
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-serif font-bold text-brand-ts tracking-tight leading-tight md:leading-none mb-6 drop-shadow-sm">
+        Donde la idea encuentra su forma.
+      </h1>
+
+      <p class="text-base md:text-xl text-gray-800 max-w-2xl mx-auto font-normal leading-relaxed mb-10 bg-white/40 backdrop-blur-[2px] p-3 rounded-xl">
+        Transformamos requerimientos técnicos en componentes de alta precisión. Integramos escaneo 3D metrológico, cálculo fluidodinámico por CFD, prototipado funcional rápido y fabricación final en CNC y fundición.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#contacto" class="w-full sm:w-auto px-8 py-4 bg-brand-ts text-white text-sm font-semibold tracking-wider uppercase rounded-lg hover:bg-brand-u transition-all shadow-md flex items-center justify-center gap-2">
+          <span>Contanos tu idea</span>
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+        </a>
+        <a href="#servicios" class="w-full sm:w-auto px-8 py-4 bg-white/90 text-brand-ts text-sm font-semibold tracking-wider uppercase rounded-lg border border-brand-border hover:bg-white transition-all shadow-sm">
+          Explorar Servicios
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS APILADOS (1 ARRIBA DEL OTRO) -->
+  <section id="servicios" class="py-24 max-w-6xl mx-auto px-6">
+    <div class="text-center max-w-2xl mx-auto mb-16">
+      <span class="text-xs font-mono uppercase tracking-widest text-brand-u block mb-2">Servicios Técnicos</span>
+      <h2 class="text-4xl md:text-5xl font-serif font-bold text-brand-ts">Disciplinas independientes o articuladas</h2>
+      <p class="text-sm md:text-base text-gray-600 mt-4">
+        Cada etapa puede contratarse de forma individual según la necesidad de su proyecto o integrarse en un ciclo completo de desarrollo.
+      </p>
+    </div>
+
+    <div class="space-y-12">
+
+      <!-- SERVICIO 1: INGENIERÍA INVERSA Y DIGITALIZACIÓN (image_4.png) -->
+      <div class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+          <div class="lg:col-span-5 relative h-72 lg:h-auto overflow-hidden bg-gray-100">
+            <img src="image_4.png" alt="Escaneo 3D sobre auto de carreras" class="w-full h-full object-cover">
+            <span class="absolute top-4 left-4 bg-brand-ts/90 text-white font-mono text-[10px] uppercase px-3 py-1 rounded">Einstar Vega Óptico</span>
+          </div>
+          <div class="lg:col-span-7 p-8 md:p-12 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-wider text-brand-u font-semibold">01 / Captura de Geometría</span>
+              <h3 class="text-2xl md:text-3xl font-serif font-bold text-brand-ts mt-2 mb-4">Ingeniería Inversa y Digitalización</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                Relevamiento y reconstrucción paramétrica CAD de componentes físicos existentes o descatalogados. Ideal para repuestos sin planos originales, inspección dimensional de tolerancias y ajuste directo sobre ensambles complejos.
+              </p>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-gray-600 mb-6">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Captura in-situ sin contacto</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Nube de puntos a archivo STEP/IGES</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Control dimensional vs CAD nominal</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Adaptaciones para chasis o motores</li>
+              </ul>
+            </div>
+            <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+              <button onclick="openServiceModal('inversa')" class="text-xs font-mono uppercase tracking-wider text-brand-u font-bold inline-flex items-center gap-1 hover:underline">
+                Saber más & Ficha Técnica <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </button>
+              <a href="#contacto" class="text-xs font-semibold px-4 py-2 rounded bg-gray-100 text-brand-ts hover:bg-brand-u hover:text-white transition-colors">Cotizar esta etapa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICIO 2: SIMULACIÓN COMPUTACIONAL CFD / FEA (image_5.png) -->
+      <div class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+          <div class="lg:col-span-5 relative h-72 lg:h-auto overflow-hidden bg-gray-900">
+            <img src="image_5.png" alt="Simulación aerodinámica CFD líneas de velocidad" class="w-full h-full object-cover">
+            <span class="absolute top-4 left-4 bg-brand-u text-white font-mono text-[10px] uppercase px-3 py-1 rounded">Hasta 10M Elementos</span>
+          </div>
+          <div class="lg:col-span-7 p-8 md:p-12 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-wider text-brand-u font-semibold">02 / Cálculo & Validación</span>
+              <h3 class="text-2xl md:text-3xl font-serif font-bold text-brand-ts mt-2 mb-4">Simulación Computacional (CFD / FEA)</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                Cálculo riguroso del comportamiento físico antes de cortar material. Validación aerodinámica externa, conductos de admisión interna, transferencia térmica y distribución de presiones mediante mallas de alto detalle.
+              </p>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-gray-600 mb-6">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Aerodinámica de vehículos y alerones</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Disipación térmica en carcasas</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Pérdidas de carga en tuberías/ductos</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Renders técnicos de alta fidelidad</li>
+              </ul>
+            </div>
+            <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+              <button onclick="openServiceModal('cfd')" class="text-xs font-mono uppercase tracking-wider text-brand-u font-bold inline-flex items-center gap-1 hover:underline">
+                Saber más & Ficha Técnica <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </button>
+              <a href="#contacto" class="text-xs font-semibold px-4 py-2 rounded bg-gray-100 text-brand-ts hover:bg-brand-u hover:text-white transition-colors">Cotizar esta etapa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICIO 3: PROTOTIPADO RÁPIDO FUNCIONAL (image_6.png) -->
+      <div class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+          <div class="lg:col-span-5 relative h-72 lg:h-auto overflow-hidden bg-gray-100">
+            <img src="image_6.png" alt="Prototipo FDM ducto NACA" class="w-full h-full object-cover">
+            <span class="absolute top-4 left-4 bg-brand-ts/90 text-white font-mono text-[10px] uppercase px-3 py-1 rounded">2x Bambu Lab A1</span>
+          </div>
+          <div class="lg:col-span-7 p-8 md:p-12 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-wider text-brand-u font-semibold">03 / Fabricación Aditiva</span>
+              <h3 class="text-2xl md:text-3xl font-serif font-bold text-brand-ts mt-2 mb-4">Prototipado Rápido Funcional</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                Materialización rápida y de alta resolución en 24 a 48 horas. Ideal para ensayos de interferencia, validación cinemática de ensambles, utillajes para bancos de prueba o piezas de serie corta en polímeros técnicos.
+              </p>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-gray-600 mb-6">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Materiales técnicos (PETG, PLA+, Flex)</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Tolerancias geométricas precisas</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Verificación previa a matricería</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Prototipos funcionales para test en banco</li>
+              </ul>
+            </div>
+            <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+              <button onclick="openServiceModal('prototipado')" class="text-xs font-mono uppercase tracking-wider text-brand-u font-bold inline-flex items-center gap-1 hover:underline">
+                Saber más & Ficha Técnica <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </button>
+              <a href="#contacto" class="text-xs font-semibold px-4 py-2 rounded bg-gray-100 text-brand-ts hover:bg-brand-u hover:text-white transition-colors">Cotizar esta etapa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICIO 4: MANUFACTURA FINAL CNC & FUNDICIÓN (image_7.png) -->
+      <div class="bg-white rounded-2xl border border-brand-border overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+          <div class="lg:col-span-5 relative h-72 lg:h-auto overflow-hidden bg-gray-100">
+            <img src="image_7.png" alt="Bancadas de aluminio maquinadas en CNC" class="w-full h-full object-cover">
+            <span class="absolute top-4 left-4 bg-brand-ts/90 text-white font-mono text-[10px] uppercase px-3 py-1 rounded">Metal & Escala</span>
+          </div>
+          <div class="lg:col-span-7 p-8 md:p-12 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono uppercase tracking-wider text-brand-u font-semibold">04 / Producción Definitiva</span>
+              <h3 class="text-2xl md:text-3xl font-serif font-bold text-brand-ts mt-2 mb-4">Manufactura Final: CNC & Fundición</h3>
+              <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                Llevamos el modelo validado a la pieza metálica definitiva sin fisuras de comunicación. A través de nuestro equipo integrado de mecanizado CNC y taller de fundición, gestionamos la fabricación con tolerancias estrictas y control dimensional final.
+              </p>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-gray-600 mb-6">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Mecanizado CNC de aluminio y aceros</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Fundición de hierro, bronce y aluminio</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Modelos maestros y cajas de corazón</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-brand-u"></i> Planos ejecutivos bajo norma IRAM/ISO</li>
+              </ul>
+            </div>
+            <div class="pt-4 border-t border-brand-border flex items-center justify-between">
+              <button onclick="openServiceModal('manufactura')" class="text-xs font-mono uppercase tracking-wider text-brand-u font-bold inline-flex items-center gap-1 hover:underline">
+                Saber más & Ficha Técnica <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </button>
+              <a href="#contacto" class="text-xs font-semibold px-4 py-2 rounded bg-gray-100 text-brand-ts hover:bg-brand-u hover:text-white transition-colors">Cotizar esta etapa</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECCIÓN CONTACTO (ENVÍA DIRECTO A urquijo2003@gmail.com SIN BLOQUEOS) -->
+  <section id="contacto" class="py-24 max-w-4xl mx-auto px-6">
+    <div class="bg-brand-ts text-white rounded-3xl p-8 md:p-14 shadow-xl">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-mono uppercase tracking-widest text-blue-300 block mb-2">Contacto Directo</span>
+        <h2 class="text-3xl md:text-5xl font-serif font-bold">¿Tenés una idea o proyecto en mente?</h2>
+        <p class="text-gray-300 text-sm md:text-base mt-3">
+          Comentanos de qué se trata tu pieza o desarrollo. Te asesoramos sobre la viabilidad técnica y los pasos a seguir.
+        </p>
+      </div>
+
+      <!-- Envío estándar HTML sin fetch para evitar errores CORS en archivos locales -->
+      <form id="contactForm" action="https://formsubmit.co/urquijo2003@gmail.com" method="POST" class="space-y-4">
+        
+        <!-- Configuraciones para FormSubmit -->
+        <input type="hidden" name="_subject" value="Nueva consulta técnica desde la web de UTS">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-gray-300 mb-1">Nombre y Apellido *</label>
+            <input type="text" name="Nombre" id="nombre" required placeholder="Juan Pérez" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-brand-u text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-gray-300 mb-1">Empresa / Taller / Equipo</label>
+            <input type="text" name="Empresa" id="empresa" placeholder="Opcional" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-brand-u text-sm">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-gray-300 mb-1">Email *</label>
+            <input type="email" name="Email" id="email" required placeholder="juan@ejemplo.com" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-brand-u text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-mono uppercase tracking-wider text-gray-300 mb-1">Teléfono / WhatsApp *</label>
+            <input type="tel" name="Telefono" id="telefono" required placeholder="+54 11 ..." class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-brand-u text-sm">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-wider text-gray-300 mb-1">Servicio de interés</label>
+          <select name="Servicio" id="servicio" class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:border-brand-u text-sm">
+            <option value="Proyecto Integral">Proyecto integral (múltiples etapas)</option>
+            <option value="Ingeniería Inversa">Ingeniería Inversa / Escaneo 3D</option>
+            <option value="Simulación CFD">Simulación CFD / Aerodinámica</option>
+            <option value="Prototipado FDM">Prototipado Rápido FDM</option>
+            <option value="Mecanizado / Fundición">Mecanizado CNC / Fundición</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-wider text-gray-300 mb-1">Contanos tu idea o consulta *</label>
+          <textarea name="Mensaje" id="mensaje" required rows="4" placeholder="Describí qué componente necesitás relevar, simular o fabricar, materiales estimados o plazos..." class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-brand-u text-sm resize-none"></textarea>
+        </div>
+
+        <div class="pt-2 flex flex-col sm:flex-row gap-4">
+          <button type="submit" id="btnSubmit" class="flex-1 py-4 bg-brand-u text-white text-sm font-semibold tracking-wider uppercase rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+            <span>Enviar consulta</span>
+            <i data-lucide="send" class="w-4 h-4"></i>
+          </button>
+          
+          <!-- Botón directo a WhatsApp con tu número oficial -->
+          <button type="button" onclick="sendViaWhatsApp()" class="py-4 px-6 bg-emerald-600 text-white text-sm font-semibold tracking-wider uppercase rounded-lg hover:bg-emerald-700 transition-colors flex items-center justify-center gap-2">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span>Chatear por WhatsApp</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-brand-border bg-white py-12">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div>
+        <span class="text-2xl font-black tracking-tighter inline-block">
+          <span class="text-brand-u">U</span><span class="text-brand-ts">TS</span>
+        </span>
+        <p class="text-xs text-gray-500 font-mono mt-1">Urquijo Tech Studio · Buenos Aires, Argentina</p>
+      </div>
+
+      <!-- Links sociales en footer -->
+      <div class="flex items-center gap-6">
+        <a href="https://www.instagram.com/uts.ingenieria/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-mono text-gray-600 hover:text-pink-600 transition-colors">
+          <i data-lucide="instagram" class="w-4 h-4"></i>
+          <span>@uts.ingenieria</span>
+        </a>
+        <a href="https://wa.me/541134543333" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-xs font-mono text-gray-600 hover:text-emerald-600 transition-colors">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>WhatsApp Directo</span>
+        </a>
+      </div>
+
+      <p class="text-xs font-mono text-gray-400">
+        © 2026 UTS. Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- MODAL / SUBPÁGINA DETALLADA DE SERVICIOS -->
+  <div id="serviceModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white max-w-2xl w-full rounded-2xl shadow-2xl border border-brand-border overflow-hidden">
+      
+      <div class="p-6 border-b border-brand-border flex items-center justify-between bg-brand-surface">
+        <div>
+          <span id="modalCategory" class="text-xs font-mono uppercase tracking-widest text-brand-u font-semibold">Ficha Técnica</span>
+          <h3 id="modalTitle" class="text-2xl font-serif font-bold text-brand-ts mt-0.5">Título del Servicio</h3>
+        </div>
+        <button onclick="closeServiceModal()" class="w-8 h-8 rounded-full bg-white border border-brand-border flex items-center justify-center text-gray-500 hover:text-brand-ts">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-6 md:p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+        <p id="modalDescription" class="text-gray-700 text-sm leading-relaxed"></p>
+
+        <div>
+          <h4 class="text-xs font-mono uppercase tracking-wider text-brand-ts font-bold mb-3">Capacidades & Entregables:</h4>
+          <ul id="modalDeliverables" class="space-y-2 text-xs font-mono text-gray-600"></ul>
+        </div>
+
+        <div class="p-4 rounded-lg bg-brand-surface border border-brand-border flex items-center justify-between">
+          <span class="text-xs font-mono text-gray-500">¿Querés presupuestar este servicio?</span>
+          <a href="#contacto" onclick="closeServiceModal()" class="px-4 py-2 bg-brand-u text-white text-xs font-semibold uppercase rounded hover:bg-blue-700 transition-colors">Contactar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const servicesData = {
+      inversa: {
+        category: "01 / Digitalización Metrológica",
+        title: "Ingeniería Inversa y Reconstrucción CAD",
+        description: "Nuestro servicio de digitalización óptica mediante Einstar Vega permite capturar geometrías complejas tanto en laboratorio como in-situ. Generamos modelos CAD paramétricos limpios listos para fabricación, sin los defectos típicos de mallas trianguladas crudas.",
+        deliverables: [
+          "Nube de puntos y malla STL optimizada de alta densidad.",
+          "Modelado de sólidos y superficies en formatos STEP, IGES o SLDPRT.",
+          "Informe de comparación dimensional (color map) entre el objeto real y el modelo CAD.",
+          "Reconstrucción de planos de despiece técnicos en formato PDF y DXF."
+        ]
+      },
+      cfd: {
+        category: "02 / Simulación Numérica",
+        title: "Dinámica de Fluidos Computacional (CFD)",
+        description: "Equipamiento informático de alto rendimiento capaz de resolver mallas de hasta 10 millones de celdas. Evaluamos regímenes subsónicos, capas límite, desprendimiento de flujo, pérdidas de carga en conductos internos y transferencia de calor.",
+        deliverables: [
+          "Estudios de coeficientes aerodinámicos (Cl, Cd, Downforce y Drag).",
+          "Mapas visuales de presión, turbulencia y líneas de corriente coloreadas por velocidad.",
+          "Optimización de geometrías de admisiones, tomas NACA y conductos de refrigeración.",
+          "Informe técnico formal para validación de diseño previo a maquinado."
+        ]
+      },
+      prototipado: {
+        category: "03 / Manufactura Aditiva",
+        title: "Prototipado FDM Funcional",
+        description: "Producción ágil en doble estación Bambu Lab A1 para validación dimensional antes de matricería o maquinado. Trabajamos materiales de alta estabilidad y acabados limpios con entrega en plazos mínimos.",
+        deliverables: [
+          "Impresión de verificación de interferencias y tolerancias geométricas.",
+          "Piezas en PETG, PLA técnico, TPU flexible y compuestos técnicos.",
+          "Volumen de trabajo apto para componentes medianos y ensambles modulares.",
+          "Control de densidad y orientación de capas según solicitación mecánica."
+        ]
+      },
+      manufactura: {
+        category: "04 / Metal & Escala",
+        title: "Mecanizado CNC y Fundición Industrial",
+        description: "El puente directo del modelo digital a la pieza en metal. Integramos una red de talleres asociados de mecanizado por control numérico y fundición para entregar componentes terminados con trazabilidad de ingeniería.",
+        deliverables: [
+          "Mecanizado CNC de precisión en duraluminio, aceros y plásticos de ingeniería.",
+          "Colada y fundición de piezas en hierro gris, nodular, bronce o aleaciones de aluminio.",
+          "Confección de modelos maestros para fundición.",
+          "Inspección final de medidas críticas y acabado superficial según plano."
+        ]
+      }
+    };
+
+    function openServiceModal(key) {
+      const data = servicesData[key];
+      if (!data) return;
+      document.getElementById('modalCategory').textContent = data.category;
+      document.getElementById('modalTitle').textContent = data.title;
+      document.getElementById('modalDescription').textContent = data.description;
+      
+      const list = document.getElementById('modalDeliverables');
+      list.innerHTML = '';
+      data.deliverables.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'flex items-center gap-2';
+        li.innerHTML = '<span class="text-brand-u">▸</span> ' + item;
+        list.appendChild(li);
+      });
+
+      const modal = document.getElementById('serviceModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeServiceModal() {
+      const modal = document.getElementById('serviceModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Redirección directa al WhatsApp de UTS (+541134543333)
+    function sendViaWhatsApp() {
+      const nombre = document.getElementById('nombre').value || 'Hola';
+      const servicio = document.getElementById('servicio').value;
+      const mensaje = document.getElementById('mensaje').value || 'Quiero consultar por un proyecto.';
+      
+      const texto = `Hola UTS, soy ${nombre}. Me contacto por el servicio de ${servicio}: ${mensaje}`;
+      const url = `https://wa.me/541134543333?text=${encodeURIComponent(texto)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>

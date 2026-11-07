@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTS Store | Naca Duct X2 (Par)</title>
+  <link rel="icon" type="image/png" href="/favicon.png?v=3">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #F8F9FA;
+      color: #212124;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-size: 32px 32px;
+      background-image: radial-gradient(circle, #D1D5DB 1px, transparent 1px);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.4;
+    }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(248, 249, 250, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #E2E5EB;
+    }
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .logo-uts {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+    }
+    .logo-u { color: #1A367C; }
+    .logo-ts { color: #212124; }
+    .logo-text {
+      border-left: 1px solid #CBD5E1;
+      padding-left: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+    .logo-text-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #212124;
+    }
+    .logo-text-sub {
+      font-size: 9px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #64748B;
+      font-family: "SF Mono", Monaco, "Courier New", monospace;
+    }
+    .btn-back-link {
+      font-size: 11px;
+      font-family: "SF Mono", Monaco, monospace;
+      text-transform: uppercase;
+      color: #475569;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 7px 12px;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      background: #FFF;
+      transition: all 0.2s;
+    }
+    .btn-back-link:hover {
+      border-color: #1A367C;
+      color: #1A367C;
+    }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      max-width: 1200px;
+      margin: 16px auto 0;
+      padding: 0 20px;
+      font-size: 12px;
+      font-family: "SF Mono", Monaco, monospace;
+      color: #64748B;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .breadcrumb a { color: #64748B; text-decoration: none; }
+    .breadcrumb a:hover { color: #1A367C; }
+
+    /* LAYOUT PRODUCTO */
+    .product-layout {
+      max-width: 1200px;
+      margin: 20px auto 60px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    /* VISOR TÉCNICO */
+    .gallery-container {
+      background: #FFF;
+      border: 1px solid #E2E5EB;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    .viewport-box {
+      width: 100%;
+      height: 380px;
+      background: #F8FAFC;
+      border: 1px solid #E2E5EB;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .viewport-view {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .viewport-view.hidden { display: none; }
+
+    /* TABS DE VISOR */
+    .gallery-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .tab-btn {
+      padding: 10px;
+      background: #FFF;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { border-color: #1A367C; color: #1A367C; }
+    .tab-btn.active {
+      border-color: #1A367C;
+      background: #EFF6FF;
+      color: #1A367C;
+    }
+
+    /* BUY BOX (COLUMNA DERECHA) */
+    .buy-box {
+      background: #FFF;
+      border: 1px solid #E2E5EB;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    .product-status {
+      font-family: "SF Mono", Monaco, monospace;
+      font-size: 11px;
+      color: #64748B;
+      margin-bottom: 6px;
+    }
+    .product-title {
+      font-family: "Times New Roman", Times, Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #212124;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-family: "SF Mono", Monaco, monospace;
+      color: #F59E0B;
+      margin-bottom: 16px;
+    }
+    .rating-count { color: #64748B; font-size: 11px; }
+
+    /* PRECIOS Y DESCUENTO 10% */
+    .price-container {
+      border-top: 1px solid #F1F5F9;
+      padding-top: 16px;
+      margin-bottom: 18px;
+    }
+    .regular-price-row {
+      font-size: 13px;
+      color: #64748B;
+      font-family: "SF Mono", Monaco, monospace;
+      margin-bottom: 6px;
+    }
+    
+    .promo-card {
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+    }
+    .promo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+    .promo-price {
+      font-size: 24px;
+      font-weight: 900;
+      font-family: "SF Mono", Monaco, monospace;
+      color: #059669;
+    }
+    .promo-badge {
+      font-size: 11px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-weight: 800;
+      color: #059669;
+      background: #FFF;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid #A7F3D0;
+    }
+    .promo-caption {
+      font-size: 11px;
+      font-family: "SF Mono", Monaco, monospace;
+      color: #047857;
+    }
+
+    /* SELECTOR DE DIÁMETRO */
+    .selector-block {
+      margin-bottom: 20px;
+    }
+    .selector-label {
+      font-size: 11px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #212124;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .pills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .pill-btn {
+      padding: 10px;
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      background: #FFF;
+      font-size: 12px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-weight: 600;
+      color: #212124;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .pill-btn:hover { border-color: #1A367C; }
+    .pill-btn.active {
+      border-color: #1A367C;
+      background: #EFF6FF;
+      color: #1A367C;
+      font-weight: 700;
+    }
+
+    /* SELECTOR DE ENVÍO FIJO (FLEX / RETIRO / INTERIOR) */
+    .shipping-box {
+      background: #F8FAFC;
+      border: 1px solid #E2E5EB;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    .shipping-box-header {
+      font-size: 11px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #1A367C;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .shipping-methods-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .ship-card-option {
+      border: 1px solid #E2E5EB;
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: #FFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ship-card-option:hover {
+      border-color: #94A3B8;
+    }
+    .ship-card-option.active {
+      border-color: #1A367C;
+      background: #EFF6FF;
+      box-shadow: 0 0 0 1px #1A367C;
+    }
+    .ship-opt-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ship-opt-left input {
+      accent-color: #1A367C;
+    }
+    .ship-opt-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #212124;
+    }
+    .ship-opt-eta {
+      font-size: 10px;
+      font-family: "SF Mono", Monaco, monospace;
+      color: #64748B;
+      margin-top: 2px;
+    }
+    .ship-opt-price {
+      font-size: 12px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-weight: 800;
+      color: #212124;
+      text-align: right;
+    }
+    .ship-opt-price.free { color: #059669; }
+
+    /* DESGLOSE TOTAL */
+    .order-totals-breakdown {
+      border-top: 1px solid #E2E5EB;
+      padding-top: 14px;
+      margin-bottom: 18px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-size: 12px;
+    }
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      color: #64748B;
+      margin-bottom: 6px;
+    }
+    .breakdown-row.accent {
+      color: #059669;
+      font-weight: 700;
+    }
+    .breakdown-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 14px;
+      font-weight: 800;
+      color: #212124;
+      border-top: 1px dashed #CBD5E1;
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    .breakdown-total-val {
+      font-size: 20px;
+      color: #059669;
+    }
+
+    /* BOTONES DE PAGO */
+    .actions-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .btn-transfer {
+      width: 100%;
+      padding: 14px;
+      background: #059669;
+      color: #FFF;
+      border: none;
+      border-radius: 8px;
+      font-size: 12px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .btn-transfer:hover { background: #047857; }
+
+    .btn-mp {
+      width: 100%;
+      padding: 13px;
+      background: #009EE3;
+      color: #FFF;
+      border: none;
+      border-radius: 8px;
+      font-size: 12px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .btn-mp:hover { background: #0081b8; }
+
+    .shipping-quick-info {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #F1F5F9;
+      font-size: 11px;
+      font-family: "SF Mono", Monaco, monospace;
+      color: #64748B;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    /* ESPECIFICACIONES TÉCNICAS */
+    .specs-section {
+      margin-top: 32px;
+      background: #FFF;
+      border: 1px solid #E2E5EB;
+      border-radius: 12px;
+      padding: 24px;
+    }
+    .specs-title {
+      font-size: 13px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #1A367C;
+      margin-bottom: 14px;
+      border-bottom: 1px solid #F1F5F9;
+      padding-bottom: 8px;
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-size: 12px;
+    }
+    .spec-item span { display: block; }
+    .spec-label { color: #64748B; font-size: 10px; text-transform: uppercase; margin-bottom: 2px; }
+    .spec-val { color: #212124; font-weight: 700; }
+
+    /* MODAL DE CHECKOUT MERCADO PAGO */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.hidden { display: none; }
+    .modal-card {
+      background: #FFF;
+      border-radius: 12px;
+      max-width: 500px;
+      width: 100%;
+      padding: 28px;
+      border: 1px solid #E2E5EB;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid #F1F5F9;
+      padding-bottom: 12px;
+    }
+    .modal-title { font-size: 14px; font-family: "SF Mono", Monaco, monospace; font-weight: 700; color: #212124; }
+    .btn-close-modal { background: none; border: none; font-size: 18px; cursor: pointer; color: #64748B; }
+
+    .modal-summary-box {
+      background: #F8FAFC;
+      border: 1px solid #E2E5EB;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      font-size: 11px;
+      font-family: "SF Mono", Monaco, monospace;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .modal-field { margin-bottom: 12px; }
+    .modal-field label { display: block; font-size: 11px; font-family: "SF Mono", Monaco, monospace; font-weight: 700; color: #475569; margin-bottom: 4px; }
+    .modal-field input { width: 100%; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 6px; font-size: 13px; font-family: inherit; }
+    .modal-field input:focus { outline: none; border-color: #1A367C; }
+
+    .btn-modal-confirm {
+      width: 100%;
+      padding: 13px;
+      background: #009EE3;
+      color: #FFF;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: "SF Mono", Monaco, monospace;
+      font-weight: 700;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .product-layout { grid-template-columns: 1fr; }
+      .viewport-box { height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <a href="/tienda/" class="logo-box">
+        <span class="logo-uts"><span class="logo-u">U</span><span class="logo-ts">TS</span></span>
+        <div class="logo-text">
+          <span class="logo-text-title">Store Oficial</span>
+          
+        </div>
+      </a>
+
+      <a href="/tienda/" class="btn-back-link">
+        ← Volver al Catálogo
+      </a>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="/tienda/">Store</a>
+    <span>/</span>
+    <span style="color:#212124; font-weight:600;">Naca Duct X2 (Par)</span>
+  </div>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="product-layout">
+    
+    <!-- COLUMNA IZQUIERDA: VISUALIZADOR 3D / CFD / COTAS -->
+    <div>
+      <div class="gallery-container">
+        
+        <div class="viewport-box">
+          <!-- VISTA 1: RENDER ISOMÉTRICO -->
+          <div id="viewRender" class="viewport-view">
+            <svg viewBox="0 0 500 350" style="max-height: 320px;">
+              <defs>
+                <linearGradient id="ductGradP" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#3A3B40" />
+                  <stop offset="60%" stop-color="#212124" />
+                  <stop offset="100%" stop-color="#141416" />
+                </linearGradient>
+                <linearGradient id="throatGradP" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#1E293B" />
+                  <stop offset="100%" stop-color="#0F172A" />
+                </linearGradient>
+              </defs>
+              <path d="M 60 70 L 440 70 C 455 70 465 80 465 95 L 465 240 C 465 255 455 265 440 265 L 60 265 C 45 265 35 255 35 240 L 35 95 C 35 80 45 70 60 70 Z" fill="url(#ductGradP)" stroke="#475569" stroke-width="2" />
+              <path d="M 90 95 Q 230 110 380 90 L 380 245 Q 230 225 90 240 Z" fill="url(#throatGradP)" stroke="#64748B" stroke-width="1.5" />
+              <path d="M 90 95 L 380 167 L 380 245 L 90 240 Z" fill="#090D16" opacity="0.85" />
+              <g id="flangeDuct">
+                <ellipse cx="380" cy="167" rx="35" ry="60" fill="#1E293B" stroke="#94A3B8" stroke-width="2" />
+                <ellipse cx="400" cy="167" rx="35" ry="60" fill="#0F172A" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4 2" />
+                <path d="M 380 107 L 400 107 M 380 227 L 400 227" stroke="#94A3B8" stroke-width="2" />
+              </g>
+              <circle cx="55" cy="85" r="5" fill="#0F172A" stroke="#94A3B8" stroke-width="1.5" />
+              <circle cx="250" cy="80" r="5" fill="#0F172A" stroke="#94A3B8" stroke-width="1.5" />
+              <circle cx="445" cy="85" r="5" fill="#0F172A" stroke="#94A3B8" stroke-width="1.5" />
+              <circle cx="55" cy="250" r="5" fill="#0F172A" stroke="#94A3B8" stroke-width="1.5" />
+              <circle cx="250" cy="255" r="5" fill="#0F172A" stroke="#94A3B8" stroke-width="1.5" />
+              <circle cx="445" cy="250" r="5" fill="#0F172A" stroke="#94A3B8" stroke-width="1.5" />
+              <text x="70" y="235" font-family="monospace" font-size="10" fill="#64748B" letter-spacing="1.5">UTS // SPEC: NACA-01</text>
+            </svg>
+          </div>
+
+          <!-- VISTA 2: SIMULACIÓN CFD -->
+          <div id="viewCFD" class="viewport-view hidden">
+            <svg viewBox="0 0 500 350" style="max-height: 320px;">
+              <rect width="500" height="350" fill="#090D16" rx="8" />
+              <path d="M 20 80 Q 200 85 380 130" stroke="#38BDF8" stroke-width="3" fill="none" opacity="0.8" />
+              <path d="M 20 120 Q 180 125 380 145" stroke="#34D399" stroke-width="3.5" fill="none" opacity="0.9" />
+              <path d="M 20 167 Q 220 167 380 167" stroke="#FBBF24" stroke-width="4" fill="none" />
+              <path d="M 20 215 Q 180 205 380 185" stroke="#34D399" stroke-width="3.5" fill="none" opacity="0.9" />
+              <path d="M 20 255 Q 200 245 380 200" stroke="#38BDF8" stroke-width="3" fill="none" opacity="0.8" />
+              <ellipse cx="340" cy="167" rx="30" ry="40" fill="#EF4444" opacity="0.25" />
+              <circle cx="340" cy="167" r="10" fill="#EF4444" opacity="0.8" />
+              <path d="M 90 95 Q 230 110 380 90 L 380 245 Q 230 225 90 240 Z" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-dasharray="3 3" />
+              <text x="20" y="325" font-family="monospace" font-size="10" fill="#38BDF8">RECUPERACIÓN PRESIÓN: 88.4% · VELOCIDAD MÁX: 45 m/s</text>
+            </svg>
+          </div>
+
+          <!-- VISTA 3: PLANO IRAM Y COTAS -->
+          <div id="viewBlueprint" class="viewport-view hidden">
+            <svg viewBox="0 0 500 350" style="max-height: 320px;">
+              <rect width="500" height="350" fill="#F1F5F9" rx="8" stroke="#CBD5E1" stroke-width="1" />
+              <pattern id="gridSub" width="20" height="20" patternUnits="userSpaceOnUse">
+                <rect width="20" height="20" fill="none" stroke="#E2E8F0" stroke-width="0.8" />
+              </pattern>
+              <rect width="500" height="350" fill="url(#gridSub)" />
+              <path d="M 100 80 L 400 80 L 400 260 L 100 260 Z" fill="none" stroke="#1E293B" stroke-width="2" />
+              <path d="M 120 100 Q 240 120 370 100 L 370 240 Q 240 220 120 240 Z" fill="none" stroke="#1A367C" stroke-width="2" />
+              <line x1="100" y1="50" x2="400" y2="50" stroke="#DC2626" stroke-width="1" />
+              <text x="235" y="45" font-family="monospace" font-size="11" fill="#DC2626" font-weight="bold">215.0 mm</text>
+              <line x1="430" y1="80" x2="430" y2="260" stroke="#DC2626" stroke-width="1" />
+              <text x="435" y="175" font-family="monospace" font-size="11" fill="#DC2626" font-weight="bold">135.0 mm</text>
+              <line x1="370" y1="285" x2="400" y2="285" stroke="#1A367C" stroke-width="1" />
+              
+            </svg>
+          </div>
+        </div>
+
+        <!-- SELECTOR DE VISTAS TÉCNICAS -->
+        <div class="gallery-tabs">
+          <button type="button" class="tab-btn active" onclick="switchView('render', this)">1. Vista 3D</button>
+          <button type="button" class="tab-btn" onclick="switchView('cfd', this)">2. Análisis CFD</button>
+          <button type="button" class="tab-btn" onclick="switchView('blueprint', this)">3. Cotas IRAM</button>
+        </div>
+
+      </div>
+
+      <!-- ESPECIFICACIONES -->
+      <div class="specs-section">
+        <h3 class="specs-title">Ficha Técnica & Ensayos Mecánicos</h3>
+        <div class="specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Material Estándar</span>
+            <span class="spec-val">PETG Técnico Alta Densidad</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Resistencia Térmica</span>
+            <span class="spec-val">HDT 78°C / Combustibles & Aceites</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Norma de Perfil</span>
+            <span class="spec-val">NACA Subsonic Inlets Report Nº 824</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Fijación Estructura</span>
+            <span class="spec-val">6x Avellanados M4 Perimetrales</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: BUY BOX -->
+    <div>
+      <aside class="buy-box">
+        <div class="product-status">Nuevo · Fabricación Técnica FDM</div>
+        <h1 class="product-title">Naca Duct X2 (Par)</h1>
+        
+        <div class="product-rating">
+          <span>★★★★★</span>
+          <span class="rating-count">(5.0 · Pilotos Zonal & Track Day)</span>
+        </div>
+
+        <!-- PRECIOS BASE DEL PRODUCTO (EQUILIBRADOS) -->
+        <div class="price-container">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:8px;">
+            <!-- Tarjeta Precio Regular -->
+            <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:12px 14px;">
+              <span style="font-size:10px; font-family:'SF Mono', monospace; color:#64748B; font-weight:700; text-transform:uppercase; display:block; margin-bottom:4px;">Precio de Lista</span>
+              <div style="font-size:20px; font-weight:800; font-family:'SF Mono', monospace; color:#1E293B;">$50.000 <span style="font-size:11px; font-weight:600; color:#64748B;">ARS</span></div>
+              <span style="font-size:10px; font-family:'SF Mono', monospace; color:#64748B; display:block; margin-top:2px;">Mercado Pago / Cuotas</span>
+            </div>
+
+            <!-- Tarjeta Precio Transferencia -->
+            <div style="background:#ECFDF5; border:1px solid #A7F3D0; border-radius:8px; padding:12px 14px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:10px; font-family:'SF Mono', monospace; color:#065F46; font-weight:700; text-transform:uppercase;">Transferencia</span>
+                <span style="font-size:9px; font-family:'SF Mono', monospace; font-weight:800; color:#059669; background:#FFF; border:1px solid #A7F3D0; padding:1px 5px; border-radius:3px;">10% OFF</span>
+              </div>
+              <div style="font-size:20px; font-weight:800; font-family:'SF Mono', monospace; color:#059669;">$45.000 <span style="font-size:11px; font-weight:600; color:#047857;">ARS</span></div>
+              <span style="font-size:10px; font-family:'SF Mono', monospace; color:#047857; display:block; margin-top:2px;">Abono directo CBU/CVU</span>
+            </div>
+          </div>
+          <div style="font-size:11px; font-family:'SF Mono', monospace; color:#64748B; text-align:right;">* Valores correspondientes al par (2 unidades)</div>
+        </div>
+<!-- SELECTOR DE CANTIDAD -->
+        <div class="selector-block">
+          <label class="selector-label">Cantidad de Juegos (Pares):</label>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <button type="button" class="pill-btn" style="width:44px; font-size:16px; font-weight:800; padding:8px 0;" onclick="changeQty(-1)">-</button>
+            <span id="lblQty" style="font-family:'SF Mono', monospace; font-size:16px; font-weight:800; min-width:32px; text-align:center;">1</span>
+            <button type="button" class="pill-btn" style="width:44px; font-size:16px; font-weight:800; padding:8px 0;" onclick="changeQty(1)">+</button>
+            <span style="font-size:11px; font-family:'SF Mono', monospace; color:#64748B;">(El flete HOP se cobra una sola vez hasta 5 kg)</span>
+          </div>
+        </div>
+
+        <!-- SELECTOR DE ENVÍO FIJO (SIN APIS COMPLEJAS) -->
+        <div class="shipping-box">
+          <div class="shipping-box-header">
+            <span>📦 Método de Entrega:</span>
+          </div>
+
+          <div class="shipping-methods-list">
+            <!-- Opción 1: Envíos Flex CABA y GBA -->
+            <div class="ship-card-option active" id="optFlex" onclick="selectShippingMode('flex', 8300, 'Envío a Domicilio / Punto HOP (CABA y GBA)')">
+              <div class="ship-opt-left">
+                <input type="radio" name="shipOption" checked>
+                <div>
+                  <div class="ship-opt-name">Envío a Domicilio / Punto HOP (CABA / GBA)</div>
+                  <div class="ship-opt-eta">Llega en 24-48 hs hábiles (Red HOP / Drop-off)</div>
+                </div>
+              </div>
+              <div class="ship-opt-price">$8.300</div>
+            </div>
+
+            <!-- Opción 2: Retiro en Taller UTS (Lautaro 1029, CABA) -->
+            <div class="ship-card-option" id="optRetiro" onclick="selectShippingMode('retiro', 0, 'Retiro en Taller UTS - Lautaro 1029 (CABA)')">
+              <div class="ship-opt-left">
+                <input type="radio" name="shipOption">
+                <div>
+                  <div class="ship-opt-name">Retiro en Taller UTS (Lautaro 1029, CABA)</div>
+                  <div class="ship-opt-eta">Coordinación previa (Lun a Vie 9 a 18 hs)</div>
+                </div>
+              </div>
+              <div class="ship-opt-price free">Gratis</div>
+            </div>
+
+            <!-- Opción 3: Interior del país (Vía Cargo / Correo) -->
+            <div class="ship-card-option" id="optInterior" onclick="selectShippingMode('interior', 0, 'Envío al Interior (Vía Cargo / Correo)')">
+              <div class="ship-opt-left">
+                <input type="radio" name="shipOption">
+                <div>
+                  <div class="ship-opt-name">Envío al Interior del País</div>
+                  <div class="ship-opt-eta">Vía Cargo (Pago en Destino) o Correo</div>
+                </div>
+              </div>
+              <div class="ship-opt-price" style="color:#059669;">A coordinar</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESUMEN FINAL CON ENVÍO SUMADO -->
+        <div class="order-totals-breakdown">
+          <div class="breakdown-row">
+            <span>Subtotal Piezas (Pares):</span>
+            <span id="lblSubtotalPieces">$50.000,00</span>
+          </div>
+          <div class="breakdown-row accent">
+            <span>10% OFF Transferencia:</span>
+            <span id="lblDiscountTransfer">-$5.000,00</span>
+          </div>
+          <div class="breakdown-row" style="color:#1A367C; font-weight:700;">
+            <span>Costo de Envío:</span>
+            <span id="lblShippingSummaryCost">$8.300,00</span>
+          </div>
+
+          <!-- TOTAL FINAL A PAGAR -->
+          <div class="breakdown-total">
+            <span>TOTAL A TRANSFERIR:</span>
+            <span class="breakdown-total-val" id="lblFinalTotalTransfer">$53.300,00</span>
+          </div>
+          <div class="breakdown-row" style="margin-top:4px; font-size:11px;">
+            <span>Total Regular con Mercado Pago:</span>
+            <span id="lblFinalTotalRegular" style="font-weight:700; color:#212124;">$58.300,00</span>
+          </div>
+        </div>
+
+        <!-- SOLO DOS ACCIONES DE PAGO -->
+        <div class="actions-container">
+          <!-- 1. TRANSFERENCIA 10% OFF CON ENVÍO SUMADO -->
+          <button type="button" class="btn-transfer" onclick="openTransferModal()">
+            <span id="btnTextTransfer">Pagar por Transferencia ($53.300)</span>
+          </button>
+
+          <!-- 2. MERCADO PAGO CON ENVÍO SUMADO -->
+          <button type="button" class="btn-mp" onclick="openMPModal()">
+            <span id="btnTextMP">Pagar con Mercado Pago ($58.300)</span>
+          </button>
+        </div>
+
+        <!-- LOGÍSTICA RÁPIDA -->
+        <div class="shipping-quick-info">
+          <div>🛵 <strong>Envíos Flex:</strong> CABA y todo Gran Buenos Aires (1er, 2do y 3er cordón).</div>
+          <div>📦 <strong>Resto del país:</strong> Despacho a terminal o sucursal por Vía Cargo.</div>
+          <div>🧾 <strong>Facturación:</strong> Se emite Factura C Oficial UTS.</div>
+        </div>
+
+      </aside>
+    </div>
+
+  </main>
+
+  <!-- MODAL FORMULARIO DE DESPACHO + MERCADO PAGO -->
+  <div id="modalMP" class="modal-overlay hidden">
+    <div class="modal-card" style="max-width: 520px; max-height: 92vh; overflow-y: auto;">
+      <div class="modal-header">
+        <span class="modal-title">Datos de Entrega · Checkout Mercado Pago</span>
+        <button type="button" class="btn-close-modal" onclick="closeMPModal()">✕</button>
+      </div>
+
+      <div class="modal-summary-box">
+        <div style="font-weight:700; color:#1E293B; margin-bottom:4px;">• Producto: Naca Duct X2 (<span id="modalMPQtyLabel">1</span> par/es)</div>
+        <div style="color:#64748B;">• Entrega: <span id="modalMPShippingLabel">Envío a Domicilio / Punto HOP</span></div>
+        <div style="margin-top:8px; font-size:14px; color:#1A367C; font-weight:800; border-top:1px dashed #CBD5E1; padding-top:6px;">
+          TOTAL A ABONAR: <span id="modalMPTotalLabel">$58.300,00 ARS</span>
+        </div>
+      </div>
+
+      <form id="formCheckoutMP" onsubmit="handleMPCheckoutSubmit(event)">
+        <!-- Web3Forms Access Key vinculada -->
+        <input type="hidden" name="access_key" value="c99b0be2-6962-49f5-9414-217a38196643">
+        <input type="hidden" name="subject" value="Nueva Orden UTS Store - Pago Mercado Pago">
+        <input type="hidden" name="from_name" value="UTS Store Notifier">
+        <input type="checkbox" name="botcheck" style="display: none;">
+
+        <div class="modal-field">
+          <label>Nombre y Apellido Completo *</label>
+          <input type="text" name="nombre_apellido" id="mpNombre" required placeholder="Juan Manuel Fangio">
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="modal-field">
+            <label>DNI (Para la encomienda) *</label>
+            <input type="text" name="dni_encomienda" id="mpDNI" required placeholder="38.123.456">
+          </div>
+          <div class="modal-field">
+            <label>Teléfono / WhatsApp *</label>
+            <input type="tel" name="telefono_whatsapp" id="mpTel" required placeholder="11 3454 3333">
+          </div>
+        </div>
+
+        <div class="modal-field">
+          <label>Email de Contacto *</label>
+          <input type="email" name="email" id="mpEmail" required placeholder="correo@ejemplo.com">
+        </div>
+
+        <div id="boxCamposEnvioMP">
+          <div class="modal-field">
+            <label>Dirección de Entrega o Punto de Retiro *</label>
+            <input type="text" name="direccion_entrega" id="mpDir" required placeholder="Calle, Altura, Piso / Taller">
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+            <div class="modal-field">
+              <label>Localidad / Barrio *</label>
+              <input type="text" name="localidad" id="mpLoc" required placeholder="Buenos Aires / CABA / GBA">
+            </div>
+            <div class="modal-field">
+              <label>Código Postal *</label>
+              <input type="text" name="codigo_postal" id="mpCP" required placeholder="1706">
+            </div>
+          </div>
+        </div>
+
+        <div id="mpFormStatus" style="display:none; font-size:11px; font-family:'SF Mono', monospace; padding:10px; border-radius:6px; margin-top:10px; text-align:center;"></div>
+
+        <button type="submit" class="btn-modal-confirm" id="btnModalMPSubmit" style="background:#009EE3; font-weight:800; letter-spacing:0.5px;">
+          Pagar con Mercado Pago →
+        </button>
+
+        <p style="font-size:10px; font-family:'SF Mono', monospace; color:#94A3B8; text-align:center; margin-top:10px; line-height:1.4;">
+          🔒 Al hacer clic, tus datos de despacho se registran de forma segura y serás redirigido a la pasarela oficial de Mercado Pago para abonar con tarjeta, saldo o cuotas.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL DATOS DE TRANSFERENCIA BANCARIA -->
+  <div id="modalTransfer" class="modal-overlay hidden">
+    <div class="modal-card" style="max-width: 480px;">
+      <div class="modal-header">
+        <span class="modal-title">Datos para Transferencia Bancaria</span>
+        <button type="button" class="btn-close-modal" onclick="closeTransferModal()">✕</button>
+      </div>
+
+      <div style="background:#ECFDF5; border:1px solid #A7F3D0; border-radius:8px; padding:16px; margin-bottom:18px; text-align:center;">
+        <span style="font-size:11px; font-family:'SF Mono', monospace; color:#065F46; text-transform:uppercase; font-weight:700; display:block;">Total Final a Transferir (Con 10% OFF + Envío)</span>
+        <div id="modalTransferTotalAmount" style="font-size:26px; font-weight:900; font-family:'SF Mono', monospace; color:#059669; margin:4px 0;">$53.300,00 ARS</div>
+        <span id="modalTransferSummaryNote" style="font-size:11px; font-family:'SF Mono', monospace; color:#047857;">Incluye 1 juego (par) + Envío seleccionado</span>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:18px; font-family:'SF Mono', monospace; font-size:12px;">
+        <!-- Titular -->
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
+          <span style="color:#64748B; font-size:11px;">TITULAR:</span>
+          <span style="font-weight:700; color:#1E293B;">Ignacio Ariel Urquijo</span>
+        </div>
+
+        <!-- Alias con botón copiar -->
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="color:#64748B; font-size:10px; display:block;">ALIAS:</span>
+            <span style="font-weight:800; color:#1A367C; font-size:14px;">nacho.urquijo</span>
+          </div>
+          <button type="button" class="pill-btn" style="padding:6px 12px; font-size:11px;" onclick="copyData('nacho.urquijo', this)">Copiar Alias</button>
+        </div>
+
+        <!-- CVU con botón copiar -->
+        <div style="background:#F8FAFC; border:1px solid #E2E8F0; border-radius:6px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <span style="color:#64748B; font-size:10px; display:block;">CVU MERCADO PAGO:</span>
+            <span style="font-weight:700; color:#1E293B; font-size:12px;">0000003100049207526351</span>
+          </div>
+          <button type="button" class="pill-btn" style="padding:6px 12px; font-size:11px;" onclick="copyData('0000003100049207526351', this)">Copiar CVU</button>
+        </div>
+      </div>
+
+      <!-- RECORDATORIO DE ENVÍO DE COMPROBANTE -->
+      <div style="background:#FFFBEB; border:1px solid #FDE68A; border-radius:8px; padding:14px; margin-bottom:14px; text-align:center;">
+        <span style="font-size:12px; font-family:'SF Mono', monospace; font-weight:700; color:#92400E; display:block; line-height:1.5;">
+          Recordá enviar el comprobante de transferencia a <span style="text-decoration:underline;">urquijo2003@gmail.com</span> o al <a href="https://wa.me/5491134543333" target="_blank" style="color:#1A367C; font-weight:800; text-decoration:none;">+54 9 11 3454-3333</a>
+        </span>
+      </div>
+
+      <button type="button" class="pill-btn" style="width:100%; padding:12px; font-size:12px; font-weight:700; background:#1E293B; color:#FFF; border:none; border-radius:6px; cursor:pointer;" onclick="closeTransferModal()">
+        Entendido / Cerrar
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const PRODUCT_UNIT_PRICE = 50000;
+    const UNIT_DISCOUNT = 5000; // 10% OFF
+    const UNIT_PROMO_PRICE = 45000;
+
+    let quantity = 1;
+    
+    let currentShippingMode = 'flex';
+    let currentShippingCost = 8300;
+    let currentShippingName = 'Envío a Domicilio / Punto HOP (CABA y GBA)';
+
+    // Pegá acá la URL de tu Cloudflare Worker una vez creado:
+    const CLOUDFLARE_WORKER_URL = "https://damp-wind-b0e6.urquijo2003.workers.dev";
+
+    function changeQty(delta) {
+      const next = quantity + delta;
+      if (next >= 1 && next <= 10) {
+        quantity = next;
+        document.getElementById('lblQty').textContent = quantity;
+        updateTotals();
+      }
+    }
+
+    function selectShippingMode(mode, cost, name) {
+      currentShippingMode = mode;
+      currentShippingCost = cost;
+      currentShippingName = name;
+
+      document.querySelectorAll('.ship-card-option').forEach(c => c.classList.remove('active'));
+      const activeCard = document.getElementById(mode === 'flex' ? 'optFlex' : (mode === 'retiro' ? 'optRetiro' : 'optInterior'));
+      if (activeCard) {
+        activeCard.classList.add('active');
+        const inputRadio = activeCard.querySelector('input');
+        if (inputRadio) inputRadio.checked = true;
+      }
+
+      // Ajustar campos de despacho en modal si es retiro
+      const boxEnvio = document.getElementById('boxCamposEnvioMP');
+      const inputDir = document.getElementById('mpDir');
+      const inputLoc = document.getElementById('mpLoc');
+      const inputCP = document.getElementById('mpCP');
+
+      if (boxEnvio) {
+        if (mode === 'retiro') {
+          boxEnvio.style.display = 'none';
+          if (inputDir) inputDir.required = false;
+          if (inputLoc) inputLoc.required = false;
+          if (inputCP) inputCP.required = false;
+        } else {
+          boxEnvio.style.display = 'block';
+          if (inputDir) inputDir.required = true;
+          if (inputLoc) inputLoc.required = true;
+          if (inputCP) inputCP.required = true;
+        }
+      }
+
+      updateTotals();
+    }
+
+    function updateTotals() {
+      const subtotalPiecesRegular = PRODUCT_UNIT_PRICE * quantity;
+      const subtotalPiecesPromo = UNIT_PROMO_PRICE * quantity;
+      const totalDiscount = UNIT_DISCOUNT * quantity;
+
+      const finalTransfer = subtotalPiecesPromo + currentShippingCost;
+      const finalRegular = subtotalPiecesRegular + currentShippingCost;
+
+      let shipLabel = '';
+      if (currentShippingMode === 'interior') {
+        shipLabel = 'A coordinar (Vía Cargo en destino)';
+      } else if (currentShippingCost === 0) {
+        shipLabel = 'Gratis ($0,00)';
+      } else {
+        shipLabel = `$${currentShippingCost.toLocaleString('es-AR', {minimumFractionDigits: 2})}`;
+      }
+
+      // Actualizar todo el desglose visual en tiempo real
+      const elemSubtotal = document.getElementById('lblSubtotalPieces');
+      if (elemSubtotal) elemSubtotal.textContent = `$${subtotalPiecesRegular.toLocaleString('es-AR', {minimumFractionDigits: 2})}`;
+
+      const elemDiscount = document.getElementById('lblDiscountTransfer');
+      if (elemDiscount) elemDiscount.textContent = `-$${totalDiscount.toLocaleString('es-AR', {minimumFractionDigits: 2})}`;
+
+      const elemShip = document.getElementById('lblShippingSummaryCost');
+      if (elemShip) elemShip.textContent = shipLabel;
+
+      const elemFinalTransf = document.getElementById('lblFinalTotalTransfer');
+      if (elemFinalTransf) elemFinalTransf.textContent = `$${finalTransfer.toLocaleString('es-AR', {minimumFractionDigits: 2})} ARS`;
+
+      const elemFinalReg = document.getElementById('lblFinalTotalRegular');
+      if (elemFinalReg) elemFinalReg.textContent = `$${finalRegular.toLocaleString('es-AR', {minimumFractionDigits: 2})} ARS`;
+
+      // Textos dinámicos en los botones principales
+      const btnTransf = document.getElementById('btnTextTransfer');
+      if (btnTransf) btnTransf.textContent = `Pagar por Transferencia ($${finalTransfer.toLocaleString('es-AR')})`;
+
+      const btnMP = document.getElementById('btnTextMP');
+      if (btnMP) btnMP.textContent = `Pagar con Mercado Pago ($${finalRegular.toLocaleString('es-AR')})`;
+    }
+
+    function setDiameter(dia, btn) {
+      selectedDiameter = dia;
+      document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const label = dia === '2.5' ? 'Ø 63.5 mm (2.5")' : 'Ø 76.2 mm (3.0")';
+      document.getElementById('blueprintDiameterText').textContent = label;
+      document.getElementById('modalDiameterLabel').textContent = dia;
+    }
+
+    function switchView(viewName, btn) {
+      document.getElementById('viewRender').classList.add('hidden');
+      document.getElementById('viewCFD').classList.add('hidden');
+      document.getElementById('viewBlueprint').classList.add('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (viewName === 'render') document.getElementById('viewRender').classList.remove('hidden');
+      if (viewName === 'cfd') document.getElementById('viewCFD').classList.remove('hidden');
+      if (viewName === 'blueprint') document.getElementById('viewBlueprint').classList.remove('hidden');
+    }
+
+    // CHECKOUT: TRANSFERENCIA 10% OFF VÍA WHATSAPP
+    function payTransferWhatsApp() {
+      let shippingText = '';
+
+      if (currentShippingMode === 'flex') {
+        shippingText = 'Envío a Domicilio / Punto HOP (CABA/GBA) - $8.300 ARS';
+      } else if (currentShippingMode === 'retiro') {
+        shippingText = 'Retiro en Taller UTS (Lautaro 1029, CABA) - Sin Costo';
+      } else {
+        shippingText = 'Envío al Interior del País (Coordinar Vía Cargo con pago en destino o Correo)';
+      }
+
+      const subtotalPiecesPromo = UNIT_PROMO_PRICE * quantity;
+      const finalTransfer = subtotalPiecesPromo + currentShippingCost;
+
+      const msg = `Hola UTS! Quiero encargar Conductos NACA en PETG Técnico con 10% OFF por transferencia:%0A%0A` +
+        `• *Pieza:* Naca Duct X2 - Par (PETG)%0A` +
+        `• *Cantidad:* ${quantity} unidad(es)%0A` +
+        `` +
+        `• *Subtotal Piezas:* $${subtotalPiecesPromo.toLocaleString('es-AR')} ARS (10% OFF aplicado)%0A` +
+        `• *Entrega seleccionada:* ${shippingText}%0A` +
+        `• *TOTAL FINAL A TRANSFERIR:* $${finalTransfer.toLocaleString('es-AR')} ARS%0A%0A` +
+        `Por favor pásenme el CBU/Alias para transferir y coordinar la entrega.`;
+
+      window.open(`https://wa.me/541134543333?text=${msg}`, '_blank');
+    }
+
+    
+    // MODAL TRANSFERENCIA BANCARIA
+    function openTransferModal() {
+      const subtotalPiecesPromo = UNIT_PROMO_PRICE * quantity;
+      const finalTransfer = subtotalPiecesPromo + currentShippingCost;
+      
+      let shipText = '';
+      if (currentShippingMode === 'flex') {
+        shipText = 'Envío HOP CABA/GBA ($8.300)';
+      } else if (currentShippingMode === 'retiro') {
+        shipText = 'Retiro en Taller UTS - Lautaro 1029, CABA (Gratis)';
+      } else {
+        shipText = 'Envío Interior (A coordinar)';
+      }
+
+      document.getElementById('modalTransferTotalAmount').textContent = `$${finalTransfer.toLocaleString('es-AR', {minimumFractionDigits: 2})} ARS`;
+      document.getElementById('modalTransferSummaryNote').textContent = `${quantity} juego(s) Naca Duct X2 + ${shipText}`;
+      document.getElementById('modalTransfer').classList.remove('hidden');
+    }
+
+    function closeTransferModal() {
+      document.getElementById('modalTransfer').classList.add('hidden');
+    }
+
+    function copyData(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        const prev = btn.textContent;
+        btn.textContent = '¡Copiado!';
+        btn.style.borderColor = '#059669';
+        btn.style.color = '#059669';
+        setTimeout(() => {
+          btn.textContent = prev;
+          btn.style.borderColor = '';
+          btn.style.color = '';
+        }, 1800);
+      }).catch(() => {
+        alert("Copiado manual: " + text);
+      });
+    }
+
+    function sendWhatsAppTransferOrder() {
+      let shippingText = '';
+
+      if (currentShippingMode === 'flex') {
+        shippingText = 'Envío a Domicilio / Punto HOP (CABA/GBA) - $8.300 ARS';
+      } else if (currentShippingMode === 'retiro') {
+        shippingText = 'Retiro en Taller UTS (Lautaro 1029, CABA) - Sin Costo';
+      } else {
+        shippingText = 'Envío al Interior del País (Coordinar Vía Cargo con pago en destino o Correo)';
+      }
+
+      const subtotalPiecesPromo = UNIT_PROMO_PRICE * quantity;
+      const finalTransfer = subtotalPiecesPromo + currentShippingCost;
+
+      const msg = `Hola UTS! Ya realicé la transferencia para encargar Naca Duct X2:%0A%0A` +
+        `• *Producto:* Naca Duct X2 (Juego por 2 unidades)%0A` +
+        `• *Cantidad:* ${quantity} par(es)%0A` +
+        `• *Subtotal:* $${subtotalPiecesPromo.toLocaleString('es-AR')} ARS (10% OFF aplicado)%0A` +
+        `• *Entrega:* ${shippingText}%0A` +
+        `• *TOTAL TRANSFERIDO:* $${finalTransfer.toLocaleString('es-AR')} ARS%0A%0A` +
+        `Adjunto el comprobante de transferencia bancaria a nombre de Ignacio Ariel Urquijo para coordinar la entrega.`;
+
+      window.open(`https://wa.me/541134543333?text=${msg}`, '_blank');
+    }
+
+    // MODAL MERCADO PAGO Y FORMULARIO DE DESPACHO
+    function openMPModal() {
+      const subtotalRegular = PRODUCT_UNIT_PRICE * quantity;
+      const finalRegular = subtotalRegular + currentShippingCost;
+
+      document.getElementById('modalMPQtyLabel').textContent = `${quantity} par(es)`;
+      document.getElementById('modalMPShippingLabel').textContent = currentShippingName;
+      document.getElementById('modalMPTotalLabel').textContent = `$${finalRegular.toLocaleString('es-AR', {minimumFractionDigits: 2})} ARS`;
+
+      // Si es retiro en taller, ocultar y hacer opcionales los campos de dirección
+      const boxEnvio = document.getElementById('boxCamposEnvioMP');
+      const inputDir = document.getElementById('mpDir');
+      const inputLoc = document.getElementById('mpLoc');
+      const inputCP = document.getElementById('mpCP');
+
+      if (currentShippingMode === 'retiro') {
+        boxEnvio.style.display = 'none';
+        inputDir.required = false;
+        inputLoc.required = false;
+        inputCP.required = false;
+      } else {
+        boxEnvio.style.display = 'block';
+        inputDir.required = true;
+        inputLoc.required = true;
+        inputCP.required = true;
+      }
+
+      document.getElementById('modalMP').classList.remove('hidden');
+    }
+
+    function closeMPModal() {
+      document.getElementById('modalMP').classList.add('hidden');
+    }
+
+    async function handleMPCheckoutSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('formCheckoutMP');
+      const btn = document.getElementById('btnModalMPSubmit');
+      const statusDiv = document.getElementById('mpFormStatus');
+
+      btn.disabled = true;
+      btn.textContent = 'Registrando pedido y generando pago...';
+      btn.style.opacity = '0.75';
+      statusDiv.style.display = 'none';
+
+      const subtotalRegular = PRODUCT_UNIT_PRICE * quantity;
+      const finalRegular = subtotalRegular + currentShippingCost;
+
+      // 1. Preparar datos para Web3Forms
+      const formData = new FormData(form);
+      formData.append('producto', 'Naca Duct X2 (Par)');
+      formData.append('cantidad_pares', quantity);
+      formData.append('metodo_entrega', currentShippingName);
+      formData.append('costo_envio', `$${currentShippingCost.toLocaleString('es-AR')}`);
+      formData.append('total_abonado', `$${finalRegular.toLocaleString('es-AR')} ARS`);
+      formData.append('pasarela', 'Mercado Pago');
+
+      try {
+        // Enviar a Web3Forms (espera confirmación en segundo plano)
+        const web3Promise = fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        }).catch(err => console.warn('Web3Forms warning:', err));
+
+        // 2. Llamar al Worker de Cloudflare para crear preferencia en Mercado Pago
+        const payload = {
+          title: `Naca Duct X2 - Par x2 (${quantity} juego/s)`,
+          unit_price: PRODUCT_UNIT_PRICE,
+          quantity: quantity,
+          shipping_cost: currentShippingCost,
+          back_url: "https://uts-ingenieria.com.ar/orden-confirmada"
+        };
+
+        const mpRes = await fetch(CLOUDFLARE_WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const mpData = await mpRes.json();
+
+        // Esperar a que Web3Forms termine antes del redirect
+        await web3Promise;
+
+        if (mpData.init_point) {
+          btn.textContent = '¡Redirigiendo a Mercado Pago!';
+          window.location.href = mpData.init_point;
+        } else {
+          throw new Error(mpData.error || 'No se pudo generar la pasarela de Mercado Pago.');
+        }
+
+      } catch (err) {
+        statusDiv.style.display = 'block';
+        statusDiv.style.background = '#FEF2F2';
+        statusDiv.style.border = '1px solid #FECACA';
+        statusDiv.style.color = '#991B1B';
+        statusDiv.textContent = 'Inconveniente con la pasarela: ' + err.message + '. Podés abonar por Transferencia Bancaria.';
+
+        btn.disabled = false;
+        btn.textContent = 'Reintentar Pago con Mercado Pago →';
+        btn.style.opacity = '1';
+      }
+    }
+
+    // Inicializar valores al cargar
+    updateTotals();
+  </script>
+</body>
+</html>
